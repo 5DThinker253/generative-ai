@@ -24,3 +24,24 @@ workflows:
   say-hello-workflow:
     jobs:
       - say-hello
+orbs:
+  node: circleci/node@5.1.0
+  jobs:
+  example-job:
+    docker:
+      # replace with your preferred image
+      - image: cimg/base:stable
+    steps:
+      - node/install-packages:
+          cache-only-lockfile: true 
+          app-dir: "F:\Generative-language-model\package.json" 
+          cache-path: "F:\Generative-language-model\package-lock.json" 
+          check-cache: never 
+          include-branch-in-cache-key: true 
+          pkg-manager: npm 
+          with-cache: true 
+
+workflows:
+  example-workflow:
+    jobs:
+      - example-job
